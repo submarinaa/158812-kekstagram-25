@@ -1,4 +1,7 @@
 // Функция с сайта MDN: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+const minNumber = 1;
+const maxNumber = 10;
+
 const getRandomInt = function(min, max) {
   if(min >= 0 && max >= 0) {
     return Math.random() * (max - min) + min;
@@ -6,6 +9,9 @@ const getRandomInt = function(min, max) {
 
   return 'число меньше нуля';
 };
+
+const userComment = 'Комментарий пользователя';
+const maxLengthString = 140;
 
 const getLengthString = function(string, maxLength) {
   if(string.length <= maxLength) {
@@ -15,5 +21,5 @@ const getLengthString = function(string, maxLength) {
   return false;
 };
 
-getRandomInt (1, 10);
-getLengthString('Строка, не более 140 символов', 140);
+getRandomInt (minNumber, maxNumber);
+getLengthString(userComment, maxLengthString);
