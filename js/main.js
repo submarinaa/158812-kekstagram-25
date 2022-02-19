@@ -8,14 +8,12 @@ const getRandomInt = function(min, max) {
 };
 
 const getLengthString = function(string, maxLength) {
-  if(string.length > maxLength) {
+  if(string.length <= maxLength) {
     return true;
   }
 
-  else {
-    return false;
-  }
+  return false;
 };
 
 getRandomInt (1, 10);
-getLengthString('Строка, не более 160 символов', 160);
+getLengthString('Строка, не более 140 символов', 140);
