@@ -6,8 +6,7 @@ const getRandomInt = function(min, max) {
   if(min >= 0 && max >= 0) {
     return Math.random() * (max - min) + min;
   }
-
-  return 'число меньше нуля';
+  return 'введенное число меньше нуля';
 };
 
 const userComment = 'Комментарий пользователя';
@@ -17,7 +16,6 @@ const getLengthString = function(string, maxLength) {
   if(string.length <= maxLength) {
     return true;
   }
-
   return false;
 };
 
