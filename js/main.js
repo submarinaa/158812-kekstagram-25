@@ -12,11 +12,6 @@ const NAMES_USERS = [
   'Ольга',
   'Светлана'
 ];
-const DESCRIPTIONS_PHOTOS = [
-  'Одно из лучших фото',
-  'Отличный кадр',
-  'Фото в высоком качестве'
-];
 const MAX_ITEM_ID = 25;
 const IMG_FOLDER = 'photos/';
 const IMG_EXTEND = '.jpg';
@@ -63,7 +58,7 @@ const createRandomPhoto = function (maxLength) {
     result.push({
       id: i,
       url: IMG_FOLDER + i + IMG_EXTEND,
-      description: getRandomInt(DESCRIPTIONS_PHOTOS),
+      description: 'Одно из лучших фото',
       likes: getRandomInt(MIN_LIKES, MAX_LIKES),
       comments: createRandomComments(getRandomInt(2, 5)),
     });
