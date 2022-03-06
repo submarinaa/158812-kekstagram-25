@@ -1,5 +1,5 @@
 import {IMG_FOLDER, IMG_EXTEND, MIN_LIKES, MAX_LIKES, AVATAR_FOLDER, AVATAR_EXTEND, MESSAGES_COMMENTS, NAMES_USERS} from './constants.js';
-import {getRandomInt, getSuffleIntArray} from './utils.js';
+import {getRandomInt, getSuffleIntArray} from './util.js';
 
 const suffleArray = getSuffleIntArray(1000);
 const createRandomComments = function (maxLength) {
