@@ -15,4 +15,6 @@ const getSuffleIntArray = function (length) {
   return arr;
 };
 
-export {getRandomInt, getSuffleIntArray};
+const isEscapePressed = (evt) => evt.key === 'Escape';
+
+export {getRandomInt, getSuffleIntArray, isEscapePressed};

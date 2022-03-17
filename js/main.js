@@ -8,5 +8,3 @@ const containerPictures = document.querySelector('.pictures');
 containerPictures.appendChild(
   createPicturesFragment(createData),
 );
-
-export {createData};
