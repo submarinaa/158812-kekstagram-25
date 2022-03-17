@@ -47,6 +47,7 @@ bigPictureCloseButton.addEventListener('click', () => {
 document.addEventListener('keydown', (evt) => {
   if (isEscapePressed(evt)) {
     bigPicture.classList.add('hidden');
+    body.classList.remove('modal-open');
   }
 });
 
