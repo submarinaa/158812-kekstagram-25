@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Алена Каренина](https://up.htmlacademy.ru/javascript/25/user/158812).
-* Наставник: [Екатерина Малецкая](https://htmlacademy.ru/profile/id902197).
+* Наставник: [Лариса Клец](https://htmlacademy.ru/profile/id336227).
 
 ---
 
