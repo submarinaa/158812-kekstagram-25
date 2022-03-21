@@ -52,4 +52,4 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-export { renderBigPicture };
+export {renderBigPicture, body};

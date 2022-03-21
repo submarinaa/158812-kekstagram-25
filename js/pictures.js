@@ -1,5 +1,5 @@
 // Модуль, отвечающий за отрисовку миниатюр
-import { renderBigPicture } from './render-big-pictures.js';
+import {renderBigPicture} from './render-big-pictures.js';
 
 const pictureTemplate = document.querySelector('#picture')
   .content
