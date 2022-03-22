@@ -44,4 +44,4 @@ const onUploadFormSubmit = (evt) => {
   formUploadImage.submit();
 };
 
-export {onUploadFormSubmit, hashtagInput, formUploadImage};
+export {onUploadFormSubmit, hashtagInput, formUploadImage, textarea};

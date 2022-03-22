@@ -1,5 +1,6 @@
 //Модуль, отвечающий за загрузку изображения
-
+import {isEscapePressed} from './util.js';
+import {hashtagInput, textarea} from './form-validation.js';
 import {body} from './render-big-pictures.js';
 
 const imageEditor = document.querySelector('.img-upload__overlay');
@@ -21,12 +22,20 @@ const closeImageEditor = function () {
   cleanUploadFile();
 };
 
+
 uploadFile.addEventListener('change', () => {
   openImageEditor();
 });
 
 uploadCancel.addEventListener('click', () => {
   closeImageEditor();
+});
+
+document.addEventListener('keydown', (evt) => {
+  if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
+    evt.preventDefault();
+    closeImageEditor();
+  }
 });
 
 export {cleanUploadFile, openImageEditor, closeImageEditor, imageEditor};
