@@ -4,8 +4,8 @@ import {isEscapePressed} from './util.js';
 import {body} from './render-big-pictures.js';
 import {onUploadForm, hashtagInput} from './form-validation.js';
 
-const ImageEditor = document.querySelector('.img-upload__overlay');
-const textarea = ImageEditor.querySelector('.text__description');
+const imageEditor = document.querySelector('.img-upload__overlay');
+const textarea = imageEditor.querySelector('.text__description');
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 const formUploadImage = document.querySelector('#upload-select-image');
@@ -15,12 +15,12 @@ const cleanUploadFile = function () {
 };
 
 const openImageEditor = function () {
-  ImageEditor.classList.remove('hidden');
+  imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');
 };
 
 const closeImageEditor = function () {
-  ImageEditor.classList.add('hidden');
+  imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   cleanUploadFile();
 };
