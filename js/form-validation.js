@@ -1,39 +1,47 @@
 // Модуль, отвечающий за валидацию формы
 
+import {imageEditor} from './upload-file.js';
+
 const hashtagInput = document.querySelector('.text__hashtags');
-const MAX_HASHTAG_NUMBERS = 5;
+const textarea = imageEditor.querySelector('.text__description');
+const formUploadImage = document.querySelector('#upload-select-image');
+const MAX_DESCRIPTION = 140;
+const MAX_HASHTAGS = 5;
+const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
-const validateHashtag = function (currentHashTag, nextHashTag) {
-  const hashtagRegExp = /(^#[A-Za-zА-Яа-яЁё0-9]{1,19})$/;
-  const currentHashtag = currentHashTag.toLowerCase();
-  const nextHashtag = nextHashTag.toLowerCase();
+const pristine = new Pristine(formUploadImage, {
+  classTo: 'img-upload__text',
+  errorClass: 'form__item--invalid',
+  successClass: 'form__item--valid',
+  errorTextParent: 'img-upload__text',
+  errorTextTag: 'p',
+  errorTextClass: 'field__error'
+});
 
-  if (currentHashTag.length === 1 && (currentHashTag === '#')) {
-    hashtagInput.setCustomValidity('Хэш-тег начинается с символа #');
+const getHashtags = (str) => str.split(' ').map((element) => element.toLowerCase());
+
+//Количество хэш-тегов - не более 5
+const checkCountHashtags = (tags) => tags.length <= MAX_HASHTAGS;
+
+//Максимальная длина комментария - не более 140
+const validateDescription = (str) => str.length >= 1 && str.length <= MAX_DESCRIPTION;
+
+//Отсутствие одинаковых хэш-тегов
+const checkHashtagsRepeat = (tags) => (tags.every((element) => tags.indexOf(element) === tags.lastIndexOf(element)));
+
+const validateHashtags = (value) => getHashtags(value).every((element, index, array) =>
+  re.test(element) && checkCountHashtags(array) && checkHashtagsRepeat(array)
+);
+
+pristine.addValidator(hashtagInput, validateHashtags, 'Введено невалидное значение хэш-тега');
+pristine.addValidator(textarea, validateDescription, 'Длина комментария максимум 140 символов');
+
+const onUploadFormSubmit = (evt) => {
+  const isValid = pristine.validate();
+  if (!isValid) {
+    evt.preventDefault();
   }
-  else if (!hashtagRegExp.test(currentHashTag)) {
-    hashtagInput.setCustomValidity('строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д., максимальная длина хэш-тега 20 символов');
-  }
-  else if (currentHashtag === nextHashtag) {
-    hashtagInput.setCustomValidity('хэш-теги нечувствительны к регистру: #ХэшТег и #хэштег считаются одним и тем же тегом, один и тот же хэш-тег не может быть использован дважды');
-  }
-  else {
-    hashtagInput.setCustomValidity('');
-  }
+  formUploadImage.submit();
 };
 
-const onUploadForm = function () {
-  const arrayHashtags = hashtagInput.value.split(' ');
-
-  if (arrayHashtags.length > MAX_HASHTAG_NUMBERS) {
-    hashtagInput.setCustomValidity(`Максимум ${MAX_HASHTAG_NUMBERS} хэш-тегов`);
-  } else {
-    for (let i = 0; i < arrayHashtags.length; i++) {
-      for (let j = i + 1; j < arrayHashtags.length; j++) {
-        validateHashtag(arrayHashtags[i], arrayHashtags[j]);
-      }
-    }
-  }
-};
-
-export {onUploadForm, validateHashtag, hashtagInput};
+export {onUploadFormSubmit, hashtagInput, formUploadImage};

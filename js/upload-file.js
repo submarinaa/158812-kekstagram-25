@@ -1,14 +1,10 @@
 //Модуль, отвечающий за загрузку изображения
 
-import {isEscapePressed} from './util.js';
 import {body} from './render-big-pictures.js';
-import {onUploadForm, hashtagInput} from './form-validation.js';
 
 const imageEditor = document.querySelector('.img-upload__overlay');
-const textarea = imageEditor.querySelector('.text__description');
 const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
-const formUploadImage = document.querySelector('#upload-select-image');
 
 const cleanUploadFile = function () {
   uploadFile.value = '';
@@ -25,12 +21,6 @@ const closeImageEditor = function () {
   cleanUploadFile();
 };
 
-const closeImageEditorEsc = function (evt) {
-  if (isEscapePressed(evt) && (textarea !== document.activeElement) && (hashtagInput !== document.activeElement)) {
-    closeImageEditor();
-  }
-};
-
 uploadFile.addEventListener('change', () => {
   openImageEditor();
 });
@@ -39,12 +29,4 @@ uploadCancel.addEventListener('click', () => {
   closeImageEditor();
 });
 
-document.addEventListener('keydown', () => {
-  closeImageEditorEsc();
-});
-
-formUploadImage.addEventListener('input', () => {
-  onUploadForm();
-});
-
-export {cleanUploadFile, openImageEditor, closeImageEditor, closeImageEditorEsc};
+export {cleanUploadFile, openImageEditor, closeImageEditor, imageEditor};
