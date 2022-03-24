@@ -1408,11 +1408,8 @@ main {
   color: red;
 }
 
-.text--invalid input {
-  outline: 2px solid red;
-}
-
-.text--valid input {
+.text--valid input,
+.text--valid textarea {
   outline: none;
 }
 
