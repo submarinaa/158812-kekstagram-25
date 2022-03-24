@@ -1,5 +1,5 @@
 // Модуль, отвечающий за валидацию формы
-import {imageEditor, cleanUploadFile} from './upload-file.js';
+import {imageEditor} from './upload-file.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
 const textarea = imageEditor.querySelector('.text__description');
