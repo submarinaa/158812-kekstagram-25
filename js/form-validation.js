@@ -1,5 +1,5 @@
 // Модуль, отвечающий за валидацию формы
-import {imageEditor} from './upload-file.js';
+import {imageEditor, cleanUploadFile} from './upload-file.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
 const textarea = imageEditor.querySelector('.text__description');
@@ -81,8 +81,6 @@ const onUploadForm = (evt) => {
   const isValid = pristine.validate();
   if (!isValid) {
     evt.preventDefault();
-    pristine.reset();
-    return false;
   }
   formUploadImage.submit();
 };

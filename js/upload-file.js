@@ -1,6 +1,6 @@
 //Модуль, отвечающий за загрузку изображения
 import {isEscapePressed} from './util.js';
-import {hashtagInput, textarea, formUploadImage} from './form-validation.js';
+import {hashtagInput, textarea, formUploadImage, pristine} from './form-validation.js';
 import {body} from './render-big-pictures.js';
 
 const imageEditor = document.querySelector('.img-upload__overlay');
@@ -8,8 +8,9 @@ const uploadFile = document.querySelector('#upload-file');
 const uploadCancel = document.querySelector('#upload-cancel');
 
 const cleanUploadFile = function () {
+  formUploadImage.reset();
   uploadFile.value = '';
-  formUploadImage.submit();
+  pristine.reset();
 };
 
 const openImageEditor = function () {
