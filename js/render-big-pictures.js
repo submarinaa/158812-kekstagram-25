@@ -3,15 +3,16 @@ import {isEscapePressed} from './util.js';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
-const bigPictureImage = document.querySelector('.big-picture img');
-const bigPictureCloseButton = document.querySelector('.big-picture__cancel');
-const socialCaption = document.querySelector('.social__caption');
-const socialComment = document.querySelector('.social__comment');
-const socialComments = document.querySelector('.social__comments');
-const socialCommentCount = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.comments-loader');
-const likesCount = document.querySelector('.likes-count');
-const commentsCount = document.querySelector('.comments-count');
+const bigPictureImage = bigPicture.querySelector('.big-picture img');
+const bigPictureCloseButton = bigPicture.querySelector('.big-picture__cancel');
+const social = document.querySelector('.big-picture__social');
+const socialCaption = social.querySelector('.social__caption');
+const socialComment = social.querySelector('.social__comment');
+const socialComments = social.querySelector('.social__comments');
+const socialCommentCount = social.querySelector('.social__comment-count');
+const commentsLoader = social.querySelector('.comments-loader');
+const likesCount = social.querySelector('.likes-count');
+const commentsCount = social.querySelector('.comments-count');
 
 const renderBigPicture = function (picture) {
   const pictureFragment = document.createDocumentFragment();
@@ -51,4 +52,4 @@ document.addEventListener('keydown', (evt) => {
   }
 });
 
-export { renderBigPicture };
+export {renderBigPicture, body};
