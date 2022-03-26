@@ -24,7 +24,7 @@ const createRandomPhoto = function (maxLength) {
       url: IMG_FOLDER + i + IMG_EXTEND,
       description: 'Одно из лучших фото',
       likes: getRandomInt(MIN_LIKES, MAX_LIKES),
-      comments: createRandomComments(getRandomInt(2, 5)),
+      comments: createRandomComments(getRandomInt(2, 15)),
     });
   }
   return result;
