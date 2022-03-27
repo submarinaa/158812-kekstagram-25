@@ -1,5 +1,5 @@
-import {createRandomPhoto} from './data.js';
 import {MAX_ITEM_ID} from './constants.js';
+import {createRandomPhoto} from './data.js';
 import {createPicturesFragment} from './pictures.js';
 import './render-big-pictures.js';
 import './form-validation.js';

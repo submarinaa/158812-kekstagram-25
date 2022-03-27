@@ -26,16 +26,22 @@ const closeImageEditor = function () {
 
 uploadFile.addEventListener('change', () => {
   openImageEditor();
+
+  uploadFile.removeEventListener('change', closeImageEditor);
 });
 
 uploadCancel.addEventListener('click', () => {
   closeImageEditor();
+
+  uploadCancel.removeEventListener('click', closeImageEditor);
 });
 
 document.addEventListener('keydown', (evt) => {
   if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
     evt.preventDefault();
     closeImageEditor();
+
+    document.removeEventListener('keydown', closeImageEditor);
   }
 });
 
