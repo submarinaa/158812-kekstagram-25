@@ -58,34 +58,39 @@ const renderBigPicture = function (picture) {
     commentsBound += 5;
     if (commentsBound >= picture.comments.length) {
       commentsBound = picture.comments.length;
-      commentsLoader.classList.add('hidden');
+      closeClickListener();
     }
     socialCommentCount.textContent = `${commentsBound} из ${picture.comments.length} комментариев`;
     createComments(picture, socialComment, pictureFragment, socialComments);
   };
 
+  function closeClickListener() {
+    commentsLoader.classList.add('hidden');
+    commentsLoader.removeEventListener('click', clickListener);
+  }
+
   commentsLoader.addEventListener('click', clickListener);
-  bigPictureCloseButton.addEventListener('click', () => commentsLoader.removeEventListener('click', clickListener));
-  document.addEventListener('keydown', () => commentsLoader.removeEventListener('click', clickListener));
 };
 
-const onCloseButtonModal = function () {
+const onBigPictureCloseButtonClick = () => {
+  closeBigPicture();
+};
+
+function closeBigPicture() {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
-};
+
+  bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
+}
 
 bigPictureCloseButton.addEventListener('click', () => {
-  onCloseButtonModal();
-
-  bigPictureCloseButton.removeEventListener('click', onCloseButtonModal);
+  closeBigPicture();
 });
 
 document.addEventListener('keydown', (evt) => {
   if (isEscapePressed(evt)) {
-    onCloseButtonModal();
-
-    document.removeEventListener('keydown', onCloseButtonModal);
+    closeBigPicture();
   }
 });
 
-export {renderBigPicture, onCloseButtonModal, body};
+export {renderBigPicture, body};
