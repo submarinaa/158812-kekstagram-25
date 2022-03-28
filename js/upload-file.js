@@ -13,15 +13,24 @@ const cleanUploadFile = function () {
   pristine.reset();
 };
 
-const openImageEditor = function () {
-  imageEditor.classList.remove('hidden');
-  body.classList.add('modal-open');
-};
-
 const closeImageEditor = function () {
   imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   cleanUploadFile();
+};
+
+const onCloseImageEditorEscape = (evt) => {
+  if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
+    evt.preventDefault();
+    closeImageEditor();
+  }
+};
+
+const openImageEditor = function () {
+  imageEditor.classList.remove('hidden');
+  body.classList.add('modal-open');
+
+  document.addEventListener('keydown', onCloseImageEditorEscape);
 };
 
 uploadFile.addEventListener('change', () => {
@@ -30,13 +39,6 @@ uploadFile.addEventListener('change', () => {
 
 uploadCancel.addEventListener('click', () => {
   closeImageEditor();
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
-    evt.preventDefault();
-    closeImageEditor();
-  }
 });
 
 export {cleanUploadFile, openImageEditor, closeImageEditor, imageEditor};
