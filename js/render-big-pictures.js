@@ -1,6 +1,5 @@
 // Модуль, отвечающий за отрисовку окна с полноразмерным изображением
 import {isEscapePressed} from './util.js';
-//import {onModalEscKeydown} from './upload-file.js';
 
 const body = document.querySelector('body');
 const bigPicture = document.querySelector('.big-picture');
