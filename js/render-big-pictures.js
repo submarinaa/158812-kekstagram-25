@@ -91,6 +91,7 @@ function closeBigPicture() {
   body.classList.remove('modal-open');
 
   bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
+  document.removeEventListener('keydown', onShowBigPictureEscape);
 }
 
 bigPictureCloseButton.addEventListener('click', () => {

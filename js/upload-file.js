@@ -13,7 +13,7 @@ const cleanUploadFile = function () {
   pristine.reset();
 };
 
-const closeImageEditor = function () {
+const onCloseImageEditor = function () {
   imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
   cleanUploadFile();
@@ -22,7 +22,7 @@ const closeImageEditor = function () {
 const onCloseImageEditorEscape = (evt) => {
   if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
     evt.preventDefault();
-    closeImageEditor();
+    onCloseImageEditor();
   }
 };
 
@@ -38,7 +38,9 @@ uploadFile.addEventListener('change', () => {
 });
 
 uploadCancel.addEventListener('click', () => {
-  closeImageEditor();
+  onCloseImageEditor();
+
+  document.removeEventListener('keydown', onCloseImageEditorEscape);
 });
 
-export {cleanUploadFile, openImageEditor, closeImageEditor, imageEditor};
+export {cleanUploadFile, openImageEditor, onCloseImageEditor, imageEditor};
