@@ -23,4 +23,71 @@ const AVATAR_EXTEND = '.svg';
 const MAX_DESCRIPTION = 140;
 const MAX_HASHTAGS = 5;
 
-export {MESSAGES_COMMENTS, NAMES_USERS, MAX_ITEM_ID, IMG_FOLDER, IMG_EXTEND, MIN_LIKES, MAX_LIKES, AVATAR_FOLDER, AVATAR_EXTEND, MAX_DESCRIPTION, MAX_HASHTAGS};
+const FILTERS_CONFIG = {
+  chrome: {
+    options: {
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'grayscale',
+    unit: '',
+  },
+
+  sepia: {
+    options: {
+      range: {
+        min: 0,
+        max: 1,
+      },
+      start: 1,
+      step: 0.1,
+    },
+    style: 'sepia',
+    unit: '',
+  },
+
+  marvin: {
+    options: {
+      range: {
+        min: 0,
+        max: 100,
+      },
+      start: 100,
+      step: 1,
+    },
+    style: 'invert',
+    unit: '%',
+  },
+
+  phobos: {
+    options: {
+      range: {
+        min: 0,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'blur',
+    unit: 'px',
+  },
+
+  heat: {
+    options: {
+      range: {
+        min: 1,
+        max: 3,
+      },
+      start: 3,
+      step: 0.1,
+    },
+    style: 'brightness',
+    unit: '',
+  },
+};
+
+export {MESSAGES_COMMENTS, NAMES_USERS, MAX_ITEM_ID, IMG_FOLDER, IMG_EXTEND, MIN_LIKES, MAX_LIKES, AVATAR_FOLDER, AVATAR_EXTEND, MAX_DESCRIPTION, MAX_HASHTAGS, FILTERS_CONFIG};

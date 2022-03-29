@@ -11,13 +11,13 @@ const socialCommentCount = social.querySelector('.social__comment-count');
 const commentsLoader = social.querySelector('.comments-loader');
 const likesCount = social.querySelector('.likes-count');
 
-let commentsBound;
+let commentsCount;
 
 const createComments = function (picture, socialComment, pictureFragment, socialComments) {
   let breakBtn = 0;
 
   picture.comments.forEach(({ avatar, name, message }) => {
-    if (breakBtn === commentsBound) {
+    if (breakBtn === commentsCount) {
       return;
     }
     const commentItem = socialComment.cloneNode(true);
@@ -45,9 +45,9 @@ const renderBigPicture = function (picture) {
 
   commentsLoader.classList.remove('hidden');
 
-  commentsBound = 5;
-  if (commentsBound >= picture.comments.length) {
-    commentsBound = picture.comments.length;
+  commentsCount = 5;
+  if (commentsCount >= picture.comments.length) {
+    commentsCount = picture.comments.length;
     commentsLoader.classList.add('hidden');
   }
 
@@ -60,17 +60,17 @@ const renderBigPicture = function (picture) {
   bigPictureImage.src = picture.url;
   socialCaption.textContent = picture.description;
   likesCount.textContent = picture.likes;
-  socialCommentCount.textContent = `${commentsBound} из ${picture.comments.length} комментариев`;
+  socialCommentCount.textContent = `${commentsCount} из ${picture.comments.length} комментариев`;
   socialComments.replaceChildren(pictureFragment);
   createComments(picture, socialComment, pictureFragment, socialComments);
 
   const clickListener = () => {
-    commentsBound += 5;
-    if (commentsBound >= picture.comments.length) {
-      commentsBound = picture.comments.length;
+    commentsCount += 5;
+    if (commentsCount >= picture.comments.length) {
+      commentsCount = picture.comments.length;
       closeClickListener();
     }
-    socialCommentCount.textContent = `${commentsBound} из ${picture.comments.length} комментариев`;
+    socialCommentCount.textContent = `${commentsCount} из ${picture.comments.length} комментариев`;
     createComments(picture, socialComment, pictureFragment, socialComments);
   };
 
