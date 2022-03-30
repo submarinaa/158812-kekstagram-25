@@ -1416,3 +1416,16 @@ main {
 .hidden {
   display: none;
 }
+
+.text__error {
+  color: red;
+}
+
+.text--valid input,
+.text--valid textarea {
+  outline: none;
+}
+
+.text--invalid + .img-upload__submit {
+  pointer-events: none;
+}

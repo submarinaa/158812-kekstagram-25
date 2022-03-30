@@ -4,6 +4,7 @@ import {createPicturesFragment} from './pictures.js';
 import './render-big-pictures.js';
 import './form-validation.js';
 import './upload-file.js';
+import './editor-picture.js';
 
 const createData = createRandomPhoto(MAX_ITEM_ID);
 
