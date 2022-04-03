@@ -14,7 +14,7 @@ const getServerData = (onSuccess, onError) => {
       onSuccess(photos);
     })
     .catch((err) => {
-      onError(err);
+      //onError(err);
     });
 };
 

@@ -58,19 +58,19 @@ uploadCancel.addEventListener('click', () => {
 });
 
 const disabledSubmit = () => {
-  uploadSubmit.classList.add('.img-upload__submit--disabled');
+  uploadSubmit.classList.add('img-upload__submit--disabled');
   uploadSubmit.disabled = true;
 };
 
 const undisabledSubmit = () => {
-  uploadSubmit.classList.remove('.img-upload__submit--disabled');
+  uploadSubmit.classList.remove('img-upload__submit--disabled');
   uploadSubmit.disabled = false;
 };
 
 const checkValidateSubmit = () => {
-  if (document.classList.contains('text--invalid')) {
+  if (text.classList.contains('text--invalid')) {
     disabledSubmit();
-  } else if (document.classList.contains('text--valid')) {
+  } else if (text.classList.contains('text--valid')) {
     undisabledSubmit();
   }
 };
