@@ -1,11 +1,14 @@
 // Модуль, отвечающий за валидацию формы
-import {MAX_DESCRIPTION, MAX_HASHTAGS} from './constants.js';
-import {imageEditor} from './upload-file.js';
+import {MAX_DESCRIPTION, MAX_HASHTAGS, SERVER_URL} from './constants.js';
+import {imageEditor, hideImage} from './upload-file.js';
+import {showAlertMessage} from './alert-message.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
 const textarea = imageEditor.querySelector('.text__description');
 const formUploadImage = document.querySelector('#upload-select-image');
 const re = /^#[A-Za-zА-Яа-яЕё0-9]{1,19}$/;
+
+formUploadImage.action = SERVER_URL;
 
 const pristine = new Pristine(formUploadImage, {
   classTo: 'text',
@@ -76,11 +79,31 @@ const checkHashtagsDuplicate = (value) => {
 pristine.addValidator(hashtagInput, checkHashtagsDuplicate, 'Такой хэш-тег уже существует');
 
 const onUploadForm = (evt) => {
+  evt.preventDefault();
+
   const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
+  if (isValid) {
+    const formData = new FormData(evt.target);
+
+    fetch(
+      SERVER_URL,
+      {
+        method: 'POST',
+        body: formData,
+      },
+    )
+      .then((response) => {
+        if (response.ok) {
+          hideImage();
+          showAlertMessage('Форма успешно отправлена. Поздравляем!', 'green');
+        } else {
+          showAlertMessage('Не удалось отправить форму. Попробуйте ещё раз', 'red');
+        }
+      })
+      .catch(() => {
+        showAlertMessage('Не удалось отправить форму. Попробуйте ещё раз', 'red');
+      });
   }
-  formUploadImage.submit();
 };
 
 export {onUploadForm, hashtagInput, formUploadImage, textarea, pristine};
