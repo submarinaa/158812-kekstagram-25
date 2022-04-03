@@ -77,12 +77,14 @@ const checkValidateSubmit = () => {
 
 const showImage = () => {
   undisabledSubmit();
-  imageEditor.classList.remove('hidden');
 
   previewImg.onload = () => {
     URL.revokeObjectURL(previewImg.src);
   };
   previewImg.src = URL.createObjectURL(uploadFile.files[0]);
+
+  scale.addEventListener('click', onScaleChange);
+  effectsList.addEventListener('change', onEffectsChange);
 
   cancel.addEventListener('click', hideImage);
   text.addEventListener('change', checkValidateSubmit);
@@ -93,9 +95,11 @@ const showImage = () => {
 
 function hideImage () {
   disabledSubmit();
-  imageEditor.classList.add('hidden');
 
   previewImg.src = 'img/upload-default-image.jpg';
+
+  scale.removeEventListener('click', onScaleChange);
+  effectsList.removeEventListener('change', onEffectsChange);
 
   cancel.removeEventListener('click', hideImage);
   text.removeEventListener('change', checkValidateSubmit);
