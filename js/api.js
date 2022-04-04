@@ -1,6 +1,6 @@
 // Модуль для получения и отправки данных на удалённый сервер
 import {DATA_URL} from './constants.js';
-import {showAlertMessage} from './alert-message.js';
+import {showAlertMessage} from './message.js';
 import {createPicturesFragment, getImagesData} from './pictures.js';
 
 const getServerData = () => {
