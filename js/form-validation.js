@@ -1,7 +1,7 @@
 // Модуль, отвечающий за валидацию формы
 import {MAX_DESCRIPTION, MAX_HASHTAGS, SERVER_URL} from './constants.js';
 import {imageEditor, onCloseImageEditor} from './upload-file.js';
-import {showAlertMessage, formSuccess, formError} from './message.js';
+import {openErrorMessage, openSuccessMessage} from './message.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
 const textarea = imageEditor.querySelector('.text__description');
@@ -95,16 +95,13 @@ const onUploadForm = (evt) => {
       .then((response) => {
         if (response.ok) {
           onCloseImageEditor();
-          formSuccess();
-          showAlertMessage('Форма успешно отправлена. Поздравляем!', 'green');
+          openSuccessMessage();
         } else {
-          formError();
-          showAlertMessage('Не удалось отправить форму. Попробуйте ещё раз', 'red');
+          openErrorMessage();
         }
       })
       .catch(() => {
-        formError();
-        showAlertMessage('Не удалось отправить форму. Попробуйте ещё раз', 'red');
+        openErrorMessage();
       });
   }
 };

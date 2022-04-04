@@ -1,37 +1,66 @@
 import {ALERT_SHOW_TIMER} from './constants.js';
+import {isEscapePressed} from './util.js';
 
-const successTemplate = document.querySelector('#success').content;
-const errorTemplate = document.querySelector('#error').content;
+const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+const successMessageContainer = successMessageTemplate.cloneNode(true);
+const successCloseButton = successMessageContainer.querySelector('.success__button');
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+const errorMessageContainer = errorMessageTemplate.cloneNode(true);
+const errorCloseButton = errorMessageContainer.querySelector('.error__button');
 
-function formSuccess() {
-  const createformSuccessFragment = document.createDocumentFragment();
+const alertMessageContainer = document.createElement('div');
 
-  createformSuccessFragment.appendChild(successTemplate.cloneNode(true));
-  document.querySelector('body').appendChild(createformSuccessFragment);
+//Сообщение об успешной загрузке изображения
+const onSuccessMessageEscKeydown = (evt) => {
+  if (isEscapePressed(evt)) {
+    evt.preventDefault();
+    closeMessageSuccess();
+  }
+};
 
-  const successButton = document.querySelector('.success__button');
-  const successContainer = document.querySelector('.success');
-  successButton.addEventListener('click', () => {
-    successContainer.remove();
-  });
+const onSuccessCloseButtonClick = () => {
+  closeMessageSuccess();
+};
+
+function closeMessageSuccess () {
+  successMessageContainer.remove();
+  successCloseButton.removeEventListener('click', onSuccessCloseButtonClick);
+  document.removeEventListener('keydown', onSuccessMessageEscKeydown);
 }
 
-function formError() {
-  const createformErrorFragment = document.createDocumentFragment();
+const openSuccessMessage = () => {
+  document.body.append(successMessageContainer);
 
-  createformErrorFragment.appendChild(errorTemplate.cloneNode(true));
-  document.querySelector('body').appendChild(createformErrorFragment);
+  successCloseButton.addEventListener('click', onSuccessCloseButtonClick);
+  document.addEventListener('keydown', onSuccessMessageEscKeydown);
+};
 
-  const errorButton = document.querySelector('.error__button');
-  const errorContainer = document.querySelector('.error');
-  errorButton.addEventListener('click', () => {
-    errorContainer.remove();
-  });
+//Сообщение с ошибкой загрузки изображения
+const onErrorMessageEscKeydown = (evt) => {
+  if (isEscapePressed(evt)) {
+    evt.preventDefault();
+    closeErrorMessage();
+  }
+};
+
+const onErrorCloseButtonClick = () => {
+  closeErrorMessage();
+};
+
+const openErrorMessage = () => {
+  document.body.append(errorMessageContainer);
+
+  errorCloseButton.addEventListener('click', onErrorCloseButtonClick);
+  document.addEventListener('keydown', onErrorMessageEscKeydown);
+};
+
+function closeErrorMessage() {
+  errorMessageContainer.remove();
+  errorCloseButton.removeEventListener('click', onErrorCloseButtonClick);
+  document.removeEventListener('keydown', onErrorMessageEscKeydown);
 }
 
 const showAlertMessage = (message, color) => {
-  const alertMessageContainer = document.createElement('div');
-
   alertMessageContainer.style.zIndex = 10;
   alertMessageContainer.style.position = 'absolute';
   alertMessageContainer.style.top = 0;
@@ -52,4 +81,4 @@ const showAlertMessage = (message, color) => {
   }, ALERT_SHOW_TIMER);
 };
 
-export {showAlertMessage, formSuccess, formError};
+export {showAlertMessage, openErrorMessage, openSuccessMessage};
