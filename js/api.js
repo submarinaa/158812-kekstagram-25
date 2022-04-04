@@ -1,7 +1,8 @@
 // Модуль для получения и отправки данных на удалённый сервер
-import {DATA_URL, SERVER_URL} from './constants.js';
+import {DATA_URL} from './constants.js';
+import {showAlertMessage} from './message.js';
 
-const getServerData = (onSuccess, onError) => {
+const getServerData = (onSuccess) => {
   fetch(DATA_URL)
     .then((response) => {
       if (response.ok) {
@@ -10,11 +11,12 @@ const getServerData = (onSuccess, onError) => {
       throw new Error(`${response.status} ${response.statusText}`);
     })
     .then((response) => response.json())
-    .then((photos) => {
-      onSuccess(photos);
+    .then((picturesData) => {
+      onSuccess(picturesData);
+      showAlertMessage('Все данные успешно загружены!', 'green');
     })
-    .catch((err) => {
-      onError(err);
+    .catch(() => {
+      showAlertMessage('Ошибка загрузки данных', 'red');
     });
 };
 
