@@ -1,4 +1,6 @@
 // Модуль, отвечающий за отрисовку миниатюр
+import {MAX_ITEM_ID} from './constants.js';
+import {createRandomPhoto} from './data.js';
 import {renderBigPicture} from './render-big-pictures.js';
 
 const pictureTemplate = document.querySelector('#picture')
@@ -24,4 +26,18 @@ const createPicturesFragment = function (picturesData) {
   return pictureFragment;
 };
 
-export {createPicturesFragment};
+// eslint-disable-next-line no-unused-vars
+let imagesData = [];
+
+const getImagesData = (value) => {
+  imagesData = value;
+};
+
+const createData = createRandomPhoto(MAX_ITEM_ID);
+
+const containerPictures = document.querySelector('.pictures');
+containerPictures.appendChild(
+  createPicturesFragment(createData),
+);
+
+export {createPicturesFragment, createData, containerPictures, getImagesData};

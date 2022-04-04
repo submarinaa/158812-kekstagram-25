@@ -5,13 +5,12 @@ const showAlertMessage = (message, color) => {
 
   alertMessageContainer.style.zIndex = 10;
   alertMessageContainer.style.position = 'absolute';
-  alertMessageContainer.style.bottom = 0;
+  alertMessageContainer.style.top = 0;
   alertMessageContainer.style.right = 0;
+  alertMessageContainer.style.width = '320px';
   alertMessageContainer.style.padding = '36px';
-  alertMessageContainer.style.fontSize = '18px';
+  alertMessageContainer.style.fontSize = '16px';
   alertMessageContainer.style.lineHeight = '1.5';
-  alertMessageContainer.style.textAlign = 'left';
-  alertMessageContainer.style.width = '360px';
   alertMessageContainer.style.textTransform = 'none';
 
   alertMessageContainer.style.backgroundColor = color;

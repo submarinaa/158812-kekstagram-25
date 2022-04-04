@@ -1,6 +1,6 @@
 // Модуль, отвечающий за валидацию формы
 import {MAX_DESCRIPTION, MAX_HASHTAGS, SERVER_URL} from './constants.js';
-import {imageEditor, hideImage} from './upload-file.js';
+import {imageEditor, onCloseImageEditor} from './upload-file.js';
 import {showAlertMessage} from './alert-message.js';
 
 const hashtagInput = document.querySelector('.text__hashtags');
@@ -94,7 +94,7 @@ const onUploadForm = (evt) => {
     )
       .then((response) => {
         if (response.ok) {
-          hideImage();
+          onCloseImageEditor();
           showAlertMessage('Форма успешно отправлена. Поздравляем!', 'green');
         } else {
           showAlertMessage('Не удалось отправить форму. Попробуйте ещё раз', 'red');

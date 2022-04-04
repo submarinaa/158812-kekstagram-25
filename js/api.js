@@ -1,20 +1,30 @@
-// // Модуль для получения и отправки данных на удалённый сервер
+// Модуль для получения и отправки данных на удалённый сервер
 import {DATA_URL} from './constants.js';
+import {showAlertMessage} from './alert-message.js';
+import {createPicturesFragment, getImagesData} from './pictures.js';
 
-const getServerData = (onSuccess, onError) => {
-  fetch(DATA_URL)
+const getServerData = () => {
+  fetch(
+    DATA_URL,
+    {
+      method: 'GET',
+      credentials: 'same-origin',
+    },
+  )
     .then((response) => {
       if (response.ok) {
-        return response;
+        return response.json();
       }
       throw new Error(`${response.status} ${response.statusText}`);
     })
-    .then((response) => response.json())
-    .then((photos) => {
-      onSuccess(photos);
+    .then((images) => {
+      getImagesData(images);
+      createPicturesFragment(images);
+
+      showAlertMessage('Все данные успешно загружены!', 'green');
     })
-    .catch((err) => {
-      //onError(err);
+    .catch(() => {
+      showAlertMessage('Ошибка загрузки данных', 'red');
     });
 };
 
