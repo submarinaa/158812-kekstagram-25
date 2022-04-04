@@ -26,13 +26,6 @@ const createPicturesFragment = function (picturesData) {
   return pictureFragment;
 };
 
-// eslint-disable-next-line no-unused-vars
-let imagesData = [];
-
-const getImagesData = (value) => {
-  imagesData = value;
-};
-
 const createData = createRandomPhoto(MAX_ITEM_ID);
 
 const containerPictures = document.querySelector('.pictures');
@@ -40,4 +33,4 @@ containerPictures.appendChild(
   createPicturesFragment(createData),
 );
 
-export {createPicturesFragment, createData, containerPictures, getImagesData};
+export {createPicturesFragment};
