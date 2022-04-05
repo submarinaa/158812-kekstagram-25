@@ -1,11 +1,13 @@
 // Модуль, отвечающий за отрисовку миниатюр
 import {renderBigPicture} from './render-big-pictures.js';
 
+const picturesContainer = document.querySelector('.pictures');
+
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createPicturesFragment = function (picturesData) {
+const createPicturesFragment = (picturesData) => {
   const pictureFragment = document.createDocumentFragment();
 
   picturesData.forEach((pictureData) => {
@@ -21,7 +23,7 @@ const createPicturesFragment = function (picturesData) {
       renderBigPicture(pictureData);
     });
   });
-  return pictureFragment;
+  picturesContainer.appendChild(pictureFragment);
 };
 
 export {createPicturesFragment};
