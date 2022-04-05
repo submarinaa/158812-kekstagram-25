@@ -1,4 +1,4 @@
-// Модуль для получения и отправки данных на удалённый сервер
+// Модуль для получения данных с удалённого сервера
 import {DATA_URL} from './constants.js';
 import {showAlertMessage} from './message.js';
 
