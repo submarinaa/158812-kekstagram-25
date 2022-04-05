@@ -28,7 +28,7 @@ const undisabledSubmit = () => {
   uploadSubmit.disabled = false;
 };
 
-const checkValidateSubmit = () => {
+const onCheckValidateSubmit = () => {
   if (text.classList.contains('text--invalid')) {
     disabledSubmit();
   } else if (text.classList.contains('text--valid')) {
@@ -56,7 +56,7 @@ function onCloseImageEditor() {
   effectsList.removeEventListener('change', onEffectsChange);
 
   document.removeEventListener('keydown', onCloseImageEditorEscape);
-  text.removeEventListener('change', checkValidateSubmit);
+  text.removeEventListener('change', onCheckValidateSubmit);
   formUploadImage.removeEventListener('submit', onUploadForm);
 }
 
@@ -77,7 +77,7 @@ const openImageEditor = function () {
   effectsList.addEventListener('change', onEffectsChange);
 
   document.addEventListener('keydown', onCloseImageEditorEscape);
-  text.addEventListener('change', checkValidateSubmit);
+  text.addEventListener('change', onCheckValidateSubmit);
   formUploadImage.addEventListener('submit', onUploadForm);
 };
 
