@@ -1426,6 +1426,6 @@ main {
   outline: none;
 }
 
-.text--invalid + .img-upload__submit {
+.img-upload__submit--disabled {
   pointer-events: none;
 }
