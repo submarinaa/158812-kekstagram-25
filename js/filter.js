@@ -4,7 +4,7 @@ import {generateUniqueElements, debounce} from './util.js';
 import {createPicturesFragment} from './pictures.js';
 
 const filters = document.querySelector('.img-filters');
-const filtersButton = filters.querySelectorAll('.img-filters__button');
+const filtersForm = filters.querySelector('.img-filters__form');
 
 const filterRandom = (pictures) => Array.from(generateUniqueElements(pictures, QUANTITY_RANDOM_PICTURES));
 
@@ -29,26 +29,23 @@ const renderPicturesFilter = (pictures) => {
 };
 
 const filterPictures = (pictures) => {
-  filtersButton.forEach((btn) => {
-    filters.classList.remove('img-filters--inactive');
+  filters.classList.remove('img-filters--inactive');
 
-    btn.addEventListener('click',
-      debounce((evt) => {
-        removeFilterButtonActive();
+  filtersForm.addEventListener('click',
+    debounce((evt) => {
+      removeFilterButtonActive();
+      evt.target.classList.add('img-filters__button--active');
 
-        evt.target.classList.add('img-filters__button--active');
-
-        if (evt.target.matches('#filter-default')) {
-          renderPicturesFilter(filterDefault(pictures));
-        } else if (evt.target.matches('#filter-random')) {
-          renderPicturesFilter(filterRandom(pictures));
-        } else if (evt.target.matches('#filter-discussed')) {
-          renderPicturesFilter(filterDiscussed(pictures));
-        }
-      },
-      TIMEOUT_DELAY),
-    );
-  });
+      if (evt.target.matches('#filter-default')) {
+        renderPicturesFilter(filterDefault(pictures));
+      } else if (evt.target.matches('#filter-random')) {
+        renderPicturesFilter(filterRandom(pictures));
+      } else if (evt.target.matches('#filter-discussed')) {
+        renderPicturesFilter(filterDiscussed(pictures));
+      }
+    },
+    TIMEOUT_DELAY),
+  );
 };
 
 export {filterPictures};
