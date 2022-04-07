@@ -20,13 +20,8 @@ const pristine = new Pristine(formUploadImage, {
 }, true);
 
 //Максимальная длина комментария - не более 140
-const validateDescription = (str) => {
-  if(str.length >= 1 && str.length <= MAX_DESCRIPTION - 1) {
-    textarea.style.outlineColor = 'transparent';
-    return true;
-  }
-  textarea.style.outlineColor = 'red';
-};
+const validateDescription = (str) => str.length <= MAX_DESCRIPTION - 1;
+
 pristine.addValidator(textarea, validateDescription, `Комментарий максимум ${MAX_DESCRIPTION} символов`);
 
 const getHashtags = (str) => {
