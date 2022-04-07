@@ -4,5 +4,6 @@ import './upload-file.js';
 import './editor-picture.js';
 import {createPicturesFragment} from './pictures.js';
 import {getServerData} from './api.js';
+import {filterPictures} from './filter.js';
 
-getServerData(createPicturesFragment);
+getServerData(createPicturesFragment, filterPictures);

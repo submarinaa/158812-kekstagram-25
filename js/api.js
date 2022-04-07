@@ -2,7 +2,7 @@
 import {DATA_URL} from './constants.js';
 import {showAlertMessage} from './message.js';
 
-const getServerData = (onSuccess) => {
+const getServerData = (onSuccess, onFiltering) => {
   fetch(DATA_URL)
     .then((response) => {
       if (response.ok) {
@@ -13,7 +13,10 @@ const getServerData = (onSuccess) => {
     .then((response) => response.json())
     .then((picturesData) => {
       onSuccess(picturesData);
-      showAlertMessage('Все данные успешно загружены!', 'green');
+      return picturesData;
+    })
+    .then((picturesData) => {
+      onFiltering(picturesData);
     })
     .catch(() => {
       showAlertMessage('Ошибка загрузки данных', 'red');

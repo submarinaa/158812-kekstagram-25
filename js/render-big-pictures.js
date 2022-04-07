@@ -64,7 +64,7 @@ const renderBigPicture = function (picture) {
   socialComments.replaceChildren(pictureFragment);
   createComments(picture, socialComment, pictureFragment, socialComments);
 
-  const clickListener = () => {
+  const onClickListener = () => {
     commentsCount += 5;
     if (commentsCount >= picture.comments.length) {
       commentsCount = picture.comments.length;
@@ -76,10 +76,10 @@ const renderBigPicture = function (picture) {
 
   function closeClickListener() {
     commentsLoader.classList.add('hidden');
-    commentsLoader.removeEventListener('click', clickListener);
+    commentsLoader.removeEventListener('click', onClickListener);
   }
 
-  commentsLoader.addEventListener('click', clickListener);
+  commentsLoader.addEventListener('click', onClickListener);
 };
 
 const onBigPictureCloseButtonClick = () => {
