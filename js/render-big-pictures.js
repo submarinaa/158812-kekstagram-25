@@ -13,7 +13,7 @@ const likesCount = social.querySelector('.likes-count');
 
 let commentsCount;
 
-const createComments = function (picture, socialComment, pictureFragment, socialComments) {
+const createComments = (picture, socialComment, pictureFragment, socialComments) => {
   let breakBtn = 0;
 
   picture.comments.forEach(({ avatar, name, message }) => {
@@ -34,11 +34,12 @@ const createComments = function (picture, socialComment, pictureFragment, social
 const onShowBigPictureEscape = (evt) => {
   if (isEscapePressed(evt)) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     closeBigPicture();
   }
 };
 
-const renderBigPicture = function (picture) {
+const renderBigPicture = (picture) => {
   const socialComment = social.querySelector('.social__comment');
   const socialComments = social.querySelector('.social__comments');
   const pictureFragment = document.createDocumentFragment();
@@ -68,31 +69,33 @@ const renderBigPicture = function (picture) {
     commentsCount += 5;
     if (commentsCount >= picture.comments.length) {
       commentsCount = picture.comments.length;
+      // eslint-disable-next-line no-use-before-define
       closeClickListener();
     }
     socialCommentCount.textContent = `${commentsCount} из ${picture.comments.length} комментариев`;
     createComments(picture, socialComment, pictureFragment, socialComments);
   };
 
-  function closeClickListener() {
+  const closeClickListener = () => {
     commentsLoader.classList.add('hidden');
     commentsLoader.removeEventListener('click', onClickListener);
-  }
+  };
 
   commentsLoader.addEventListener('click', onClickListener);
 };
 
 const onBigPictureCloseButtonClick = () => {
+  // eslint-disable-next-line no-use-before-define
   closeBigPicture();
 };
 
-function closeBigPicture() {
+const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
 
   bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
   document.removeEventListener('keydown', onShowBigPictureEscape);
-}
+};
 
 bigPictureCloseButton.addEventListener('click', () => {
   closeBigPicture();
