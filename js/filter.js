@@ -38,9 +38,9 @@ const filterPictures = (pictures) => {
 
       if (evt.target.matches('#filter-default')) {
         renderPicturesFilter(filterDefault(pictures));
-      } else if (evt.target.matches('#filter-random')) {
+      } if (evt.target.matches('#filter-random')) {
         renderPicturesFilter(filterRandom(pictures));
-      } else if (evt.target.matches('#filter-discussed')) {
+      } if (evt.target.matches('#filter-discussed')) {
         renderPicturesFilter(filterDiscussed(pictures));
       }
     },
