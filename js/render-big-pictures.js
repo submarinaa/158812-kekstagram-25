@@ -1,4 +1,5 @@
 // Модуль, отвечающий за отрисовку окна с полноразмерным изображением
+import {COMMENTS_LIMIT} from './constants.js';
 import {isEscapePressed} from './util.js';
 
 const body = document.querySelector('body');
@@ -46,7 +47,7 @@ const renderBigPicture = (picture) => {
 
   commentsLoader.classList.remove('hidden');
 
-  commentsCount = 5;
+  commentsCount = COMMENTS_LIMIT;
   if (commentsCount >= picture.comments.length) {
     commentsCount = picture.comments.length;
     commentsLoader.classList.add('hidden');
@@ -66,7 +67,7 @@ const renderBigPicture = (picture) => {
   createComments(picture, socialComment, pictureFragment, socialComments);
 
   const onClickListener = () => {
-    commentsCount += 5;
+    commentsCount += COMMENTS_LIMIT;
     if (commentsCount >= picture.comments.length) {
       commentsCount = picture.comments.length;
       // eslint-disable-next-line no-use-before-define
