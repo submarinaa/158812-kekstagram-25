@@ -12,7 +12,7 @@ const previewImg = document.querySelector('.img-upload__preview img');
 const effectsList = document.querySelector('.effects__list');
 const text = document.querySelector('.text');
 
-const cleanUploadFile = function () {
+const cleanUploadFile = () => {
   formUploadImage.reset();
   uploadFile.value = '';
   pristine.reset();
@@ -39,11 +39,12 @@ const onCheckValidateSubmit = () => {
 const onCloseImageEditorEscape = (evt) => {
   if (isEscapePressed(evt) && evt.target !== hashtagInput && evt.target !== textarea) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     onCloseImageEditor();
   }
 };
 
-function onCloseImageEditor() {
+const onCloseImageEditor = () => {
   disabledSubmit();
   imageEditor.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -58,9 +59,9 @@ function onCloseImageEditor() {
   document.removeEventListener('keydown', onCloseImageEditorEscape);
   text.removeEventListener('change', onCheckValidateSubmit);
   formUploadImage.removeEventListener('submit', onUploadForm);
-}
+};
 
-const openImageEditor = function () {
+const openImageEditor = () => {
   undisabledSubmit();
   imageEditor.classList.remove('hidden');
   body.classList.add('modal-open');

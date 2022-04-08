@@ -14,19 +14,21 @@ const alertMessageContainer = document.createElement('div');
 const onSuccessMessageEscKeydown = (evt) => {
   if (isEscapePressed(evt)) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     closeMessageSuccess();
   }
 };
 
 const onSuccessCloseButtonClick = () => {
+  // eslint-disable-next-line no-use-before-define
   closeMessageSuccess();
 };
 
-function closeMessageSuccess () {
+const closeMessageSuccess = () => {
   successMessageContainer.remove();
   successCloseButton.removeEventListener('click', onSuccessCloseButtonClick);
   document.removeEventListener('keydown', onSuccessMessageEscKeydown);
-}
+};
 
 const openSuccessMessage = () => {
   document.body.append(successMessageContainer);
@@ -39,11 +41,13 @@ const openSuccessMessage = () => {
 const onErrorMessageEscKeydown = (evt) => {
   if (isEscapePressed(evt)) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     closeErrorMessage();
   }
 };
 
 const onErrorCloseButtonClick = () => {
+  // eslint-disable-next-line no-use-before-define
   closeErrorMessage();
 };
 
@@ -54,11 +58,11 @@ const openErrorMessage = () => {
   document.addEventListener('keydown', onErrorMessageEscKeydown);
 };
 
-function closeErrorMessage() {
+const closeErrorMessage = () => {
   errorMessageContainer.remove();
   errorCloseButton.removeEventListener('click', onErrorCloseButtonClick);
   document.removeEventListener('keydown', onErrorMessageEscKeydown);
-}
+};
 
 const showAlertMessage = (message, color) => {
   alertMessageContainer.style.zIndex = 10;

@@ -1,4 +1,5 @@
 // Модуль, отвечающий за отрисовку окна с полноразмерным изображением
+import {COMMENTS_LIMIT} from './constants.js';
 import {isEscapePressed} from './util.js';
 
 const body = document.querySelector('body');
@@ -13,7 +14,7 @@ const likesCount = social.querySelector('.likes-count');
 
 let commentsCount;
 
-const createComments = function (picture, socialComment, pictureFragment, socialComments) {
+const createComments = (picture, socialComment, pictureFragment, socialComments) => {
   let breakBtn = 0;
 
   picture.comments.forEach(({ avatar, name, message }) => {
@@ -34,18 +35,19 @@ const createComments = function (picture, socialComment, pictureFragment, social
 const onShowBigPictureEscape = (evt) => {
   if (isEscapePressed(evt)) {
     evt.preventDefault();
+    // eslint-disable-next-line no-use-before-define
     closeBigPicture();
   }
 };
 
-const renderBigPicture = function (picture) {
+const renderBigPicture = (picture) => {
   const socialComment = social.querySelector('.social__comment');
   const socialComments = social.querySelector('.social__comments');
   const pictureFragment = document.createDocumentFragment();
 
   commentsLoader.classList.remove('hidden');
 
-  commentsCount = 5;
+  commentsCount = COMMENTS_LIMIT;
   if (commentsCount >= picture.comments.length) {
     commentsCount = picture.comments.length;
     commentsLoader.classList.add('hidden');
@@ -65,34 +67,36 @@ const renderBigPicture = function (picture) {
   createComments(picture, socialComment, pictureFragment, socialComments);
 
   const onClickListener = () => {
-    commentsCount += 5;
+    commentsCount += COMMENTS_LIMIT;
     if (commentsCount >= picture.comments.length) {
       commentsCount = picture.comments.length;
+      // eslint-disable-next-line no-use-before-define
       closeClickListener();
     }
     socialCommentCount.textContent = `${commentsCount} из ${picture.comments.length} комментариев`;
     createComments(picture, socialComment, pictureFragment, socialComments);
   };
 
-  function closeClickListener() {
+  const closeClickListener = () => {
     commentsLoader.classList.add('hidden');
     commentsLoader.removeEventListener('click', onClickListener);
-  }
+  };
 
   commentsLoader.addEventListener('click', onClickListener);
 };
 
 const onBigPictureCloseButtonClick = () => {
+  // eslint-disable-next-line no-use-before-define
   closeBigPicture();
 };
 
-function closeBigPicture() {
+const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
 
   bigPictureCloseButton.removeEventListener('click', onBigPictureCloseButtonClick);
   document.removeEventListener('keydown', onShowBigPictureEscape);
-}
+};
 
 bigPictureCloseButton.addEventListener('click', () => {
   closeBigPicture();
