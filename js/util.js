@@ -7,18 +7,18 @@ const getRandomPositiveInteger = (a, b) => {
 };
 
 const generateUniqueElements = (elements, quantity) => {
-  const arr = [];
+  const uniqueElements = [];
   let count = 0;
   while (count < quantity) {
     let randomElement = elements[getRandomPositiveInteger(1, elements.length - 1)];
 
-    while (arr.filter((element) => element.id === randomElement.id).length > 0) {
+    while (uniqueElements.filter((element) => element.id === randomElement.id).length > 0) {
       randomElement = elements[getRandomPositiveInteger(1, elements.length - 1)];
     }
-    arr.push(randomElement);
+    uniqueElements.push(randomElement);
     count++;
   }
-  return arr;
+  return uniqueElements;
 };
 
 const debounce = (callback, timeoutDelay = 500) => {

@@ -48,7 +48,7 @@ const changeEffect = (value) => {
   setEffect(FILTERS_CONFIG[value]);
 };
 
-const unsetEffect = () => {
+const resetEffect = () => {
   imgUploadPreview.className = '';
   imgUploadPreview.style.filter = 'none';
   effectLevelValue.value = 'none';
@@ -56,12 +56,12 @@ const unsetEffect = () => {
   effectLevelFieldset.style.display = 'none';
 };
 
-const onEffectsChange = (evt) => {
+const onChangeEffect = (evt) => {
   if (evt.target.matches('input[type="radio"]')) {
     imgUploadPreview.className = '';
     imgUploadPreview.classList.add(`effects__preview--${evt.target.value}`);
     if (evt.target.value === 'none') {
-      unsetEffect();
+      resetEffect();
     } else {
       changeEffect(evt.target.value);
     }
@@ -75,24 +75,24 @@ const changeScale = (index) => {
   imgUploadPreview.style.transform = `scale(${scaleHiddenInput.value})`;
 };
 
-const largingScale = () => {
+const increaseScale = () => {
   if (scaleHiddenInput.value !== '1') {
     changeScale(1);
   }
 };
 
-const smallingScale = () => {
+const decreaseScale = () => {
   if (scaleHiddenInput.value !== '0.25') {
     changeScale(-1);
   }
 };
 
-const onScaleChange = (evt) => {
+const onChangeScale = (evt) => {
   if (evt.target === scaleBigger) {
-    largingScale();
+    increaseScale();
   }
   if (evt.target === scaleSmaller) {
-    smallingScale();
+    decreaseScale();
   }
 };
 
@@ -102,4 +102,4 @@ const resetImageScale = () => {
   imgUploadPreview.style.transform = `scale(${scaleHiddenInput.value})`;
 };
 
-export {onEffectsChange, unsetEffect, scale, onScaleChange, resetImageScale};
+export {onChangeEffect, resetEffect, scale, onChangeScale, resetImageScale};

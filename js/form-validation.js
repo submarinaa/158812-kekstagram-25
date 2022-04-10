@@ -73,7 +73,7 @@ const checkHashtagsDuplicate = (value) => {
 };
 pristine.addValidator(hashtagInput, checkHashtagsDuplicate, 'Такой хэш-тег уже существует');
 
-const onUploadForm = (evt) => {
+const uploadForm = (evt) => {
   evt.preventDefault();
 
   const isValid = pristine.validate();
@@ -101,4 +101,4 @@ const onUploadForm = (evt) => {
   }
 };
 
-export {onUploadForm, hashtagInput, formUploadImage, textarea, pristine};
+export {uploadForm, hashtagInput, formUploadImage, textarea, pristine};

@@ -1,8 +1,8 @@
 //Модуль, отвечающий за загрузку изображения
 import {isEscapePressed} from './util.js';
-import {hashtagInput, textarea, formUploadImage, pristine, onUploadForm} from './form-validation.js';
+import {hashtagInput, textarea, formUploadImage, pristine, uploadForm} from './form-validation.js';
 import {body} from './render-big-pictures.js';
-import {onEffectsChange, unsetEffect, scale, onScaleChange, resetImageScale} from './editor-picture.js';
+import {onChangeEffect, resetEffect, scale, onChangeScale, resetImageScale} from './editor-picture.js';
 
 const imageEditor = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
@@ -53,12 +53,12 @@ const onCloseImageEditor = () => {
 
   previewImg.src = 'img/upload-default-image.jpg';
 
-  scale.removeEventListener('click', onScaleChange);
-  effectsList.removeEventListener('change', onEffectsChange);
+  scale.removeEventListener('click', onChangeScale);
+  effectsList.removeEventListener('change', onChangeEffect);
 
   document.removeEventListener('keydown', onCloseImageEditorEscape);
   text.removeEventListener('change', onCheckValidateSubmit);
-  formUploadImage.removeEventListener('submit', onUploadForm);
+  formUploadImage.removeEventListener('submit', uploadForm);
 };
 
 const openImageEditor = () => {
@@ -71,15 +71,15 @@ const openImageEditor = () => {
   };
   previewImg.src = URL.createObjectURL(uploadFile.files[0]);
 
-  unsetEffect();
+  resetEffect();
   resetImageScale();
 
-  scale.addEventListener('click', onScaleChange);
-  effectsList.addEventListener('change', onEffectsChange);
+  scale.addEventListener('click', onChangeScale);
+  effectsList.addEventListener('change', onChangeEffect);
 
   document.addEventListener('keydown', onCloseImageEditorEscape);
   text.addEventListener('change', onCheckValidateSubmit);
-  formUploadImage.addEventListener('submit', onUploadForm);
+  formUploadImage.addEventListener('submit', uploadForm);
 };
 
 uploadFile.addEventListener('change', () => {
