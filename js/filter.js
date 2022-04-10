@@ -5,6 +5,7 @@ import {createPicturesFragment} from './pictures.js';
 
 const filters = document.querySelector('.img-filters');
 const filtersForm = filters.querySelector('.img-filters__form');
+const filtersButtons = filters.querySelectorAll('.img-filters__button');
 
 const filterRandom = (pictures) => Array.from(generateUniqueElements(pictures, QUANTITY_RANDOM_PICTURES));
 
@@ -13,9 +14,9 @@ const filterDefault = (pictures) => Array.from(pictures.slice());
 const filterDiscussed = (pictures) => Array.from(pictures.slice().sort((commentA, commentB) => commentB.comments.length - commentA.comments.length));
 
 const removeFilterButtonActive = () => {
-  document.querySelector('#filter-discussed').classList.remove('img-filters__button--active');
-  document.querySelector('#filter-random').classList.remove('img-filters__button--active');
-  document.querySelector('#filter-default').classList.remove('img-filters__button--active');
+  filtersButtons.forEach((button) => {
+    button.classList.remove('img-filters__button--active');
+  });
 };
 
 const clearPictures = () => {
